@@ -1,0 +1,132 @@
+/*==========================================*/
+/*                                          */
+/*        T A B L E   E L E M E N T S       */
+/*                                          */
+/*==========================================*/
+
+table {
+    min-width: 98vw;
+    width: auto;
+    flex: 1;
+    display: grid;
+    border-collapse: collapse;
+    border-spacing: 5px;
+    background-color: white;
+    /* These are just initial values which are overriden using JavaScript when a column is resized */
+    grid-template-columns:
+        minmax(30px, 0.3fr)
+        /* 1 */
+        minmax(30px, 0.3fr)
+        /* 2 */
+        minmax(300px, 3fr)
+        /* 3 */
+        minmax(100px, 1fr)
+        /* 4 */
+        minmax(100px, 1fr)
+        /* 5 */
+        minmax(100px, 1fr)
+        /* 6 */
+        minmax(100px, 1fr)
+        /* 7 */
+        minmax(100px, 1fr)
+        /* 8 */
+        minmax(60px, 0.6fr)
+        /* 9 */
+        minmax(60px, 0.6fr)
+        /* 10 */
+        minmax(60px, 0.6fr)
+        /* 11 */
+        minmax(100px, 1fr)
+        /* 12 */
+        minmax(60px, 0.6fr)
+        /* 13 */
+        minmax(60px, 0.6fr)
+        /* 14 */
+        minmax(60px, 0.6fr)
+        /* 15 */
+        minmax(60px, 0.6fr)
+        /* 16 */
+        minmax(60px, 0.6fr)
+        /* 17 */
+        minmax(60px, 0.6fr)
+        /* 18 */
+        minmax(60px, 0.6fr)
+        /* 19 */
+        minmax(60px, 0.6fr);
+        /* 20 */
+}
+
+thead,
+tbody,
+tr {
+    display: contents;
+}
+
+thead {
+    font-family: 'CoreSansDS35Regular';
+}
+
+th,
+td {
+    padding: 10px 0px;
+    overflow: hidden;
+    text-align: center;
+    /* text-overflow: ellipsis; "..."вместо текста который не уместился */
+    /* white-space: nowrap; чтобы строки не переносились */
+}
+
+.text-long {
+    text-align: left;
+    /* padding-left: 5px; */
+}
+
+th {
+    position: sticky;  /* Если надо чтобы th прилипала к верху */
+    word-wrap: break-word; /* Перенос длинных слов */
+    top: 0;
+    background-color: #6B727B;
+    border-right: 1px dotted white;
+    font-weight: normal;
+    font-size: 1.1rem;
+    color: white;
+    /* position: relative;  Если не надо чтобы th прилипала к верху */
+}
+
+th:first-child {
+    padding-left: 5px;
+}
+
+th:last-child {
+    border: 0;
+}
+
+.resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: red;
+    opacity: 0;
+    width: 4px;
+    cursor: col-resize;
+}
+
+.resize-handle:hover,
+/* The following selector is needed so the handle is visible during resize even if the mouse isn't over the handle anymore */
+.header--being-resized .resize-handle {
+    opacity: 0.5;
+}
+
+th:hover .resize-handle {
+    opacity: 0.3;
+}
+
+td {
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
+    color: #808080;
+}
+
+tr:nth-child(even) td {
+    background: #f8f6ff;
+}

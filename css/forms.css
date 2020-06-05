@@ -1,0 +1,123 @@
+/*==========================================*/
+/*                                          */
+/*        F O R M S   E L E M E N T S       */
+/*                                          */
+/*==========================================*/
+
+/* Change Autocomplete styles in Chrome - change required - not working yet */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'CoreSansDS25Light';
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: var(--color-white);
+    background-color: var(--color-input);
+    box-sizing: border-box;
+    padding: 0 0.5rem 0 0.25rem;
+    text-align: start;
+    margin: 0 0.2rem;
+}
+
+input,
+input:valid,
+input:focus,
+select,
+option {
+    vertical-align: middle;
+    font-family: 'CoreSansDS25Light';
+    font-size: 13px;
+    white-space: nowrap;
+    color: var(--color-white);
+    background-color: var(--color-input);
+    box-sizing: border-box;
+    padding: 0 2px;
+    text-align: start;
+    margin: 0 0.2rem;
+}
+input,
+input:valid,
+select,
+option {border: 1px solid var(--color-input);} /* Добавил border ко всем эл-там ввода чтобы не скакала верстка при изменении статуса input на required*/
+/* input:focus { border: 1px solid var(--color-input-focus); } */
+
+input[type=number] {
+    width: 3.46em;  /* Ограничение ширины для цифрового типа */
+    padding-right: 0; /* Чтобы кнопки набора цифр были вплотную к правому краю */
+}
+
+select {
+    vertical-align: middle;
+    border-style: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+input:required {
+    /* border: 1px solid var(--color-chateauGrey);  border более светлый - маркер обязательного поля
+    /* position: absolute; */
+}
+input:required:valid {  /* При вводе числа цвет границы становится незаметным как был */
+    /* border: 1px solid var(--color-crBrown); */
+}
+
+input:focus, input:required:focus {  /* При фокусе граница становится яркой (белой) */
+    outline: none;
+}
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - not working yet */
+input:required:focus::before {
+    content:'';
+    padding-right: 10px;
+    color: var(--color-white);
+}
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - change required - span c Font-Awesome text icon - правый верхний угол span .icospan */
+.icospan {
+    margin-top: -1.6em;
+    margin-left: -0.7em;
+    color: var(--color-chateauGrey);
+    font-size: 0.8em;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, .5);
+}
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - change required - Применение яркого цвета к иконке в случае атрибутов focus и invalid к input. ~ - селектор следующего эл-та */
+input:required:focus ~ span.icospan, input:required:invalid ~ span.icospan {
+    display: inline-block;
+    color: var(--color-white);
+}
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - change required - невидимость span с иконкой в обычном состоянии */
+input:required ~ span.icospan {
+    display: none;
+}
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - change required - invalid input */
+/* input:invalid {
+    background-color: #FBF0F0;
+    border: 1px solid #EAC6C9;
+    box-shadow: inset 0px 1px 2px rgba(0,0,0,0.5);
+} */
+
+/* НЕИСПОЛЬЗУЕМЫЙ Элемент - change required - variant - иконка с Font Awesome примененная к label перед input */
+label i {
+    color: var(--color-chateauGrey);
+    font-size: 0.8em;
+    vertical-align: top;
+    padding-top: 4px;
+}
+
+/* Пока не удалять - Черновик - иконки и цвета из примера Антона */
+/* <i class="fas fa-asterisk"></i> <i class="fas fa-check"></i> <i class="fas fa-check-circle"></i>
+
+valid
+background-color: #FFFAE6;
+border: 1px solid #D7D2BF; */

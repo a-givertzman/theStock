@@ -1,0 +1,345 @@
+/* ================================================================== */
+/* Настройка FLEX 3x1 для правой секции general Ширина-Высота-Глубина */
+/* ================================================================== */
+
+.section-general__flex {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 0 0 10px 0;
+}
+
+
+.section-general__flex div {
+    flex: 1 1 auto;
+}
+
+/* ================================================================== */
+/*                     GRIDs для правой секции                        */
+/* ================================================================== */
+
+.section-general__grid,
+.section-sub__grid {
+    display: grid;
+}
+
+.section-sub__grid--5x2>div,
+.section-general__grid--3x2>div {
+    display: flex;
+    align-items: center;
+}
+
+/* ================================================================== */
+/* Настройка grid 4x2 для правой секции general Ширина-Высота-Глубина */
+/* ================================================================== */
+
+.section-general__grid--4x2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.section-general__grid--4x2 .frst {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.section-general__grid--4x2 .scnd {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.section-general__grid--4x2 .thrd {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.section-general__grid--4x2 .frth {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+.section-general__grid--4x2 .ffth {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.section-general__grid--4x2 .sxth {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.section-general__grid--4x2 .snth {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.section-general__grid--4x2 .eith {
+    grid-area: 2 / 4 / 3 / 5;
+}
+
+.section-general__grid--4x2 .nith {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.section-general__grid--4x2 .teth {
+    grid-area: 3 / 3 / 4 / 4;
+}
+
+.section-general__grid--4x2 .elth {
+    grid-area: 3 / 4 / 4 / 5;
+}
+.section-general .title {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 18px;
+    display: flex;
+    margin-left: 16px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+
+/* ================================================================== */
+/* Настройка grid 3x5 для правой секции general Ширина-Высота-Глубина */
+/* ================================================================== */
+
+.section-general__grid--3x5 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr); 
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 0rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.section-general__grid--3x5 .frst {
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+.section-general__grid--3x5 .scnd {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.section-general__grid--3x5 .thrd {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.section-general__grid--3x5 .frth {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.section-general__grid--3x5 .ffth {
+    grid-area: 3 / 1 / 4 / 4;
+}
+
+.section-general__grid--3x5 .sxth {
+    grid-area: 4 / 1 / 5 / 2;
+}
+
+.section-general__grid--3x5 .snth {
+    grid-area: 4 / 2 / 5 / 3;
+}
+
+.section-general__grid--3x5 .eith {
+    grid-area: 4 / 3 / 5 / 4;
+}
+
+.section-general__grid--3x5 .nith {
+    grid-area: 5 / 1 / 6 / 2;
+}
+
+.section-general__grid--3x5 .teth {
+    grid-area: 5 / 2 / 6 / 3;
+}
+
+.section-general__grid--3x5 .elth {
+    grid-area: 5 / 3 / 6 / 4;
+}
+
+
+/* ================================================================== */
+/* Настройка grid 3x2 для правой секции general Ширина-Высота-Глубина */
+/* ================================================================== */
+
+.section-general__grid {
+    display: grid;
+}
+
+.section-general__grid--3x2>div {
+    margin: 0 0.5rem;
+}
+
+.section-general__grid--3x2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.section-general__grid--3x2 .frst {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.section-general__grid--3x2 .scnd {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.section-general__grid--3x2 .thrd {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.section-general__grid--3x2 .frth {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.section-general__grid--3x2 .ffth {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.section-general__grid--3x2 .sxth {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.section-general__grid--3x2 label {
+    /* Убираем чтобы все было едино */
+    /* padding-right: 0.2rem;
+    padding-left: 0.1rem; */
+}
+
+/* Order пока не работает из-за grid-area */
+/* .sxth { order:1; }
+.ffth { order:2; } */
+
+.section-general__grid--3x2 input {
+    /* height: 1.1rem; */
+}
+
+.section-general__grid--3x2 .frth {
+    justify-self: center;
+    padding-right: 0.7em;
+}
+
+/* ================================================================= */
+/* Настройка grid 5x2 для правой секции sub Ширина-Высота-количество */
+/* ================================================================= */
+.section-sub {
+    /* margin-bottom: 14px; */
+}
+
+.section-sub__grid--5x2 {
+    display: grid;
+    /* background-color: green; */
+    /* grid-template-columns: min-content 1.1fr 1.1fr 0.5fr 0.7fr; */
+    grid-template-columns: min-content 1.2fr 1.6fr 0.9fr 0.8fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0.1rem;
+    /* margin-top: 0.5rem;
+    margin-bottom: 0.75rem; */
+}
+
+.section-sub__grid--5x2 div {
+    /* background-color: DodgerBlue; */
+}
+
+/* Нулевой padding для всех labels в секции  */
+.section-sub__grid--5x2 label {
+    /* padding: 0 0.2rem; */
+    /* padding-right: 0.2rem;
+    padding-left: 0.2rem; */
+}
+
+/* Added пробел после цифры в таблице */
+.nmbr label {
+    padding-right: 0.5rem;
+}
+
+/* Added пробел для ячейки Всего */
+.sxth label.summ {
+    padding: 0 0.1rem;
+}
+
+/* Нулевой блок Грида 5x2 - цифра */
+.section-sub__grid--5x2__nmbr {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: left;
+}
+
+/* Первый блок - Ширина */
+.section-sub__grid--5x2 .frst {
+    grid-area: 1 / 2 / 2 / 3;
+    justify-self: left;
+    /* padding-left: 0.2rem; */
+}
+
+/* Второй блок - Высота */
+.section-sub__grid--5x2 .scnd {
+    grid-area: 1 / 3 / 2 / 4;
+    justify-self: center;
+}
+
+/* Третий блок - Select с выпадающим списком */
+.section-sub__grid--5x2 .thrd {
+    /* display: grid; */
+    grid-area: 1 / 4 / 2 / 5;
+    justify-self: center;
+    padding: 0 5px;
+}
+
+/* .section-sub__grid--5x2 select {
+    width: 6em;
+} */
+/* checkbox "В ряд" */
+.section-sub__grid--5x2 .checkbox {
+    grid-area: 1 / 5 / 2 / 6;
+    justify-self: center;
+}
+
+/* Четвертый блок - Количество по вертикали */
+.section-sub__grid--5x2 .frth {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+/* Пятый блок - Количество по горизонтали - занимает 2 ячейки */
+.section-sub__grid--5x2 .ffth {
+    grid-area: 2 / 3 / 3 / 5;
+    justify-self: left;
+    padding-left: 2rem;
+}
+
+/* Пятый А блок - Количество по горизонтали - занимает 2 ячейки */
+.section-sub__grid--5x2 .ffth1 {
+    grid-area: 2 / 4 / 3 / 5;
+    justify-self: right;
+    padding-left: 0;
+}
+
+/* Шестой блок - Всего */
+.section-sub__grid--5x2 .sxth {
+    grid-area: 2 / 5 / 3 / 6;
+}
+
+/* Двухстрочные Labels по центру блока, ориентация текста по правой стороне*/
+.section-sub__grid--5x2 .frth,
+.section-sub__grid--5x2 .ffth {
+    align-items: center;
+    line-height: 0.75rem;
+    text-align: end;
+}
+
+/* Выравнивание блоков по центру между соседними */
+.section-sub__grid--5x2 .scnd,
+.section-sub__grid--5x2 .ffth {
+    /* padding-right: 11px; */
+}
+
+/* Ориентация по правой стороне (вторая и последняя ячейка во сторой строке) */
+.section-sub__grid--5x2 .frth {
+    justify-self: end;
+}
+
+.section-sub__grid--5x2 .sxth {
+
+}
+.section-sub__grid--5x2 .sxth label {}

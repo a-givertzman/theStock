@@ -1,0 +1,548 @@
+@import 'reset.css';
+@import 'myFontsWebfontsKit.css';
+@import 'atomic.css';
+@import 'modal.css';
+@import 'forms.css';
+@import 'table.css';
+@import 'grids.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-chiffon: #F3FDBD;
+    --color-raven: #6B727B;
+    --color-crBrown: #474443;
+    --color-chateauGrey: #97A1AA;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-tr: transparent;
+    /* Цвета модальных окн */
+    --color-info: #90cdf4;
+    --color-alert: #fc8181;
+    /* --color-alert: #fefcbf; */
+    --color-disabled: #2d3748;
+}
+
+html,
+body {
+    font-family: 'CoreSansDS25Light';
+    background-color: var(--color-raven);
+}
+
+/* GRID-Контейнер для всего содержимого страницы */
+.gridContainer {
+    display: grid;
+    /* background-color: var(--color-raven); */
+    /* margin: 0 1.5rem; по левой стороне */
+    margin: 0 auto;
+    /* по центру */
+    padding: 0 1.5rem;
+    width: max-content;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(5, min-content);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.header-top {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+/* Отступ слева для элемента div Заголовка правой стороны, Отступ слева для элемента div Заголовка секции Sub с чекбоксом */
+header.header__general div,
+header.header__sub div {
+    margin: 0.8em 0.5em 0.8em 1.2em;
+}
+
+.section__main {
+    display: flex;
+    grid-area: 2 / 1 / 3 / 3;
+    justify-content: space-between;
+    /* margin: 0.25rem 0 0 0; */
+    margin: 0.5rem 0 0.3em 0;
+    width: 100%;
+    padding: 0 0.5rem;
+    /* section__main - зазор от краев экрана с помощью padding */
+}
+
+
+/*===========================================*/
+/*========    НАВИГАЦИОННАЯ ПАНЕЛЬ    =======*/
+/*===========================================*/
+
+ul.nav-pseudo {
+    margin-top: -6px;
+}
+/* Display list items side by side */
+ul.nav-pseudo li {
+    display: inline;
+}
+ul.nav-pseudo li p {
+    display: inline-block;
+    font-family: 'CoreSansDS27CnLight';
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;  /* ... для неуместившихся символов при переполнении */
+}
+
+  /* Add a symbol (>) before/behind each list item */
+ul.nav-pseudo li+li:before {
+    content: " > ";
+    cursor: default;
+    vertical-align: top;
+    /* padding-top: 19px; */
+    /* margin-top:  5px; */
+}
+ul.nav-pseudo li, ul.nav-pseudo li span {
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+}
+ul.nav-pseudo li span {
+
+}
+
+/**/
+.section__main .nav {
+    display: flex;
+    margin-top: -6px;
+}
+
+.nav li { /* УБРАТЬ ПОСЛЕ */
+    /* border: 0.5px solid var(--color-chateauGrey); */
+}
+
+.nav li, .nav li label, .nav li span { /* НОВОЕ .nav-pseudo li, */
+    /* border: 1px solid var(--color-chateauGrey); */
+    width: 44px;
+    min-width: 44px;
+    max-width: 44px;
+
+    /* margin-right: -.3em; */
+}
+
+.nav li, .nav span, .nav label {
+    cursor: pointer;
+}
+
+.nav li::before {
+    /* content: ""; */
+    width:20px;
+    /* display: grid; */
+}
+
+.nav li span {
+    /* text-decoration: underline; */
+    /* border-bottom: 1px solid #000; */
+    font-stretch: condensed;
+}
+.nav li span, .nav li label {
+    text-align: center;
+}
+
+li.nav-item > span, li.nav-first-item > span {
+    font-family: 'CoreSansDS27CnLight';
+    overflow: hidden;
+    text-overflow: ellipsis; /* ... для неуместившихся символов при переполнении */
+    max-width:  44px;
+}
+
+.nav li:last-child { /* ВРЕМЕННАЯ МЕРА, УБРАТЬ! */
+    display: none;
+}
+
+.nav li label {
+    /* border: 0.5px solid var(--color-chateauGrey); */
+}
+li.nav-item, li.nav-first-item {
+    display: inline-flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    /* justify-content: space-between; */
+}
+/* Псевдоэл-т с точкой перенес из label (где он нафиг сдвигает вправо весь текст) в li (где он ничего не сдвигает, потому то нефиг) */
+/*li.nav-item label.beforedot::before {
+    content: ".";
+    /* margin-left: -0.3em; 
+    color: brown;
+    font-family: 'TecnicaStencil1Rg';
+    /* height: 1.3em; 
+    /* font-size: 2.8em; 
+    font-weight: bold;
+    /* line-height: 1.0em; 
+}*/
+
+/* .nav-item span::before {
+    position: absolute;
+    cursor: default;
+    content: " > ";
+    margin-top: 0.07em;
+} */
+
+.nav li.beforedot span::before {
+    margin-left: -0.7em;
+} 
+
+/* Псевдоэл-т before перенес из li в span */
+/*.section__main ul.nav li::before {
+    position: absolute;
+    cursor: default;
+    content: " > ";
+    content: url('svg/gal.png');
+    display:inline-block;
+    padding: 0 0.4em 0 0;
+    margin-left: -0.2em;  стандартное расстояние сдвига разделителя ">" в span 
+    margin-top: 0.4em;
+    text-decoration:none;
+    font-size: 0.5em;
+}*/
+
+
+.nav li.beforedot {
+    margin-left:0.5em;  /* сдвигаем весь блок li правее для того чтобы уместилась точка */
+}
+
+/* Точка между цифрами */
+.nav li.beforedot::before {
+    content: ".";
+    font-family: 'TecnicaStencil1Rg';
+    height: 0em;
+    font-size: 2.8em;
+    font-weight: bold;
+    line-height: 1.85em;
+}
+
+
+.nav li.beforedot::before{
+    margin-left: -0.25em; /* переопределение - сдвигаем разделитель в виде > между 511 . 1Ф левее */
+}
+
+.item > label, .nav-item > label, .nav-first-item > label, .nav-item li.beforedot {
+    font-family: 'TecnicaStencil1Rg';
+    /* height: 1.3em; */
+    font-size: 2.8em;
+    font-weight: bold;
+    line-height: 1.0em;
+    text-align: center;
+    /* margin: 5px 0px 10px 0px; */
+    /* background-color: var(--color-chateauGrey);
+    border-radius: 3px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px; */
+    /* max-width: fit-content; */
+}
+
+li.beforedot {
+    max-width: fit-content !important;
+}
+.nav-item:nth-child(3n)::after {
+    content: '';
+    width: 100%;
+}
+.section__main ul.nav li:first-child::before {
+    content: none;
+}
+
+
+/************************************************************/
+
+/* MAIN: If убрать "display: flex;"=> оно станет "block" => отображение для мобильных - в один столбец */
+main {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0.25rem 0.75rem 0.25rem;
+    /* padding: 0.75rem 0.25rem 0.25rem; */
+}
+
+
+
+/* Растягивающийся input */
+.input-flex {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+/* Растягивающийся элемент */
+.wide-100 {
+    flex: 1 0 auto;
+}
+
+.input-flex label {
+    flex: 0 0 100px;
+    display: block;
+}
+
+.input-flex input {
+    flex: 1 0 auto;
+}
+
+.item-1 {
+    display: grid;
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.item-2 {
+    display: grid;
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.bottom-block__buttons {
+    display: flex;
+    grid-area: 4 / 1 / 5 / 3;
+    width: 100%;
+}
+
+.status-bar {
+    display: grid;
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+
+
+/* Левая панель с канвасом */
+.item-1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-wrap {
+    margin: auto;
+}
+
+.item-1 canvas {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    border-width: 0px;
+    border-style: dotted;
+    border-color: var(--color-chiffon);
+    margin: auto;
+    background-color: var(--color-chateauGrey);
+    padding: 1.5rem; 
+    margin: 0.5rem 0.85rem 0.5rem 0
+}
+
+/* Правая панель с размерами */
+.item-2 {
+    padding: 0.25rem;
+    flex-direction: column;
+    display: flex;
+    min-width: 459px;
+}
+
+/* Верх правой панели с вводом высоты ширины и глубины */
+.section-general {
+    /* flex-direction: row;
+    font-size: .875rem; */
+    display: block;
+}
+
+/* TOP - Панель с заголовком */
+.gridContainer header.header-top {
+    height: 2rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+    border-bottom: 1px dotted var(--color-chiffon);
+    display: flex;
+}
+
+/* Заголовок в TOP - Панели */
+header.header-top div {
+    align-content: center;
+    display: grid;
+}
+
+label {
+    font-family: 'CoreSansDS25Light';
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.label-heading,
+.gridContainer header.header-top {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 1.125rem;
+    display: flex;
+}
+
+
+.header__sub label.label-heading {
+    padding-left: 0.1em;
+}
+
+/* Здесь был input  */
+
+option {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+button {
+    font-family: 'CoreSansDS25Light';
+    text-align: center;
+    color: var(--color-black);
+    background-color: transparent;
+    border: 1px solid var(--color-black);
+    /* font-size: inherit;  /* иначе текст вылезает из кнопки */
+    padding: 0 0.9em;
+    margin: 0 0.4rem;
+    max-height: 1.7em;
+}
+
+
+#selCode,
+#inpCodeEdit {
+    width: 6em;
+}
+
+#btnEdit {
+    width: 9rem;
+}
+
+.inputLabel {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: end;
+    padding-right: 0.2rem;
+    padding-left: 0.1rem;
+    font-size: 0.85rem;
+}
+
+.inputBlock-top>label,
+.inputBlock-top>input,
+.inputBlock-top>select,
+.inputBlock-top>button {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock-base>label {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock {
+    display: flex;
+    align-items: center;
+    /* vertical-align: middle; */
+    white-space: nowrap;
+}
+
+.multyLine {
+    line-height: 0.75rem;
+}
+
+
+
+section.section__main div {
+    /* padding: 0 0.75rem; */
+}
+
+section.section__main div:nth-child(2) {
+    /* margin: 0 0 0 1.5rem; */
+}
+
+/* Ширина первого Select в Top-панели выбора Типа */
+.select-type {
+    width: 6em;
+}
+
+.section__main select,
+.section__main input {
+    /*конструкция ", .section__main input" на height не срабатывает - действует только на input */
+    /* height: 1.25rem; Этот элемент влияет на вертикальное позиционирование текста внутри input и select в шапке, причем в противоположных направлениях */
+    font-size: 1rem;
+    /* вместо 0.95rem - потому что 0.95 срабатывало только на select */
+    white-space: nowrap;
+    margin: 0 0.5em;
+}
+
+.section__main button,
+.section__main div:last-child {
+    /* padding-right: 0; */
+    margin: 0;
+}
+
+.section__main div {
+    /* Все div внутри section__main - flex */
+    display: flex;
+}
+
+.section__main div label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    /* vertical-align: middle; */
+    text-align: end;
+    padding: 0.1rem;
+}
+
+.section-general__grid,
+.section-sub__grid {
+    display: grid;
+}
+
+.section-sub__grid--5x2>div,
+.section-general__grid--3x2>div {
+    display: flex;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* класс для увеличенной разрядки букв для текста ВСЕГО */
+.summ {
+    letter-spacing: .03rem;
+    font-size: 0.95rem;
+}
+
+/* Кнопки внизу страницы - по правой стороне */
+.bottom-block__buttons {
+    justify-content: flex-end;
+    /*     justify-content: space-between; */
+    /* padding: 0 0.5rem; */
+    margin-top: 0.25em;
+}
+
+.bottom-block__buttons button.button-right:first-child {
+    margin: 0;
+}
+
+.bottom-block__buttons button.button-right {
+    margin: 0 0 0 0.75em;
+    word-break: break-all;
+}
+
+.section__subsumm {
+    display: grid;
+    margin-top: 1rem;
+    justify-content: end;
+}
+
+.section__subsumm label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    white-space: nowrap;
+
+}
+
+/* Статус-бар */
+.status-bar .status-label {
+    vertical-align: middle;
+    text-align: start;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-chiffon);
+}

@@ -1,0 +1,110 @@
+/* ==================== */
+/* == МОДАЛЬНОЕ ОКНО == */
+/* ==================== */
+
+/* Контейнер - блокиратор основной страницы под модальным окном */
+.dialog-modal {
+    display: none; /* - по умолчанию none */
+    position: absolute;    /* Stay in place */
+    z-index: 100;     /* Sit on top */
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;     /* Full width */
+    height: 100%;    /* Full height */
+    overflow: auto;    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);    /* Black w/ opacity */
+}
+
+/* Псевдоэлемент before для центрирования блока gridContainer__modal  */
+.dialog-modal:before {
+    height: 100%;   /* Выравнивание по центру с помощью inline-block */
+    display: inline-block;   /*------//------ inline-block */
+    vertical-align: middle;   /* ------//------ inline-block */
+    content: '';   /* ------//------ inline-block */
+}
+
+/* Блок -обертка, созданный для центрирования внутреннего блока gridContainer__modal */
+.center-modal {
+    display: inline-block;    /* ------//------ inline-block */
+    white-space: normal;  /* ------//------ inline-block */
+    vertical-align: middle;  /* ------//------ inline-block */
+    /*text-align: left;*/
+    margin: 1.5rem;  /* Отступ от края страницы чтобы окно не уходило за край */
+}
+
+/* GRID-Контейнер для всего содержимого модального окна */
+.gridContainer__modal {
+    display: grid;
+    background-color: var(--color-raven);
+    grid-template-columns: minmax(16em, 25em); /* Ширина модального окна варьируется 256-400px плюс padding */
+    grid-template-rows: unset;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, .5);
+    padding: 0 1.25rem 1.25rem 1.25rem;
+}
+
+/* Заголовок модального окна */
+.header-top__modal {
+    height: 2rem;
+    justify-content: center;
+    border-bottom: 1px dotted var(--color-chiffon);
+    display: flex;
+}
+
+/* Заголовок в TOP - Панели */
+header.header-top__modal div {
+    align-content: center;
+    display: grid;
+    font-family: 'CoreSansDS35Regular';
+    font-size: 1.34rem;
+}
+
+/* Grid внутри контейнера "dialog-form" с пробелами по вертикали */
+.gridContainer__modal .dialog-form {
+    display: grid;
+    padding: 0.75rem 0 0 0;
+    grid-row-gap: 0.75em;
+}
+
+/* Распределение текста по всей ширине окна внутри тега p*/
+.gridContainer__modal .dialog-form p {
+    text-align: justify;
+}
+
+/* Настройка цвета для фона информационного диалогового окна - добавить этот класс таким образом: <div class="gridContainer__modal modal-info"> */
+.modal-info {
+    background-color: var(--color-info);
+}
+
+/* Настройка цвета для фона ALERT диалогового окна */
+.modal-alert {
+    background-color: var(--color-alert);
+}
+
+.gridContainer__modal header {
+    display: flex;
+}
+
+.bottom-block__buttons--modal {
+    display: flex;
+}
+
+.bottom-block__buttons--modal {
+    justify-content: flex-end;
+}
+
+/* Правая кнопка в блоке - убран правый margin */
+.bottom-block__buttons--modal button.button-right {
+    margin: 0 0 0 1.5rem;
+}
+
+/* DISABLED BUTTONS */
+button:disabled {
+    color: var(--color-disabled);  /*  --color-disabled: #2d3748;  */
+    /* border: 1px solid var(--color-disabled); */
+    cursor: auto; /* обычный курсор */
+}

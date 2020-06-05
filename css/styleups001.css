@@ -1,0 +1,948 @@
+@import 'reset.css';
+@import 'myFontsWebfontsKit.css';
+@import 'atomic.css';
+@import 'modal.css';
+@import 'forms.css';
+/* @import 'table.css'; */
+@import 'grids.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-chiffon: #F3FDBD;
+    --color-raven: #6B727B;
+    --color-crBrown: #474443;
+    --color-chateauGrey: #97A1AA;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-tr: transparent;
+    /* Цвета модальных окн */
+    --color-info: #90cdf4;
+    --color-alert: #fc8181;
+    /* --color-alert: #fefcbf; */
+    --color-disabled: #2d3748;
+}
+
+html,
+body {
+    font-family: 'CoreSansDS25Light';
+    background-color: #AAA8A9;
+}
+
+body,
+.gridContainer, .gridContainer > div {
+    min-height: 100vh;
+    max-height: 100%;
+}
+
+.gridContainer { 
+    display: grid;
+    grid-column: 1 / -1;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.gridContainer {
+    display: grid;
+    background-color: var(--color-raven);
+    width: 1200px;
+    padding: 0 25px;
+}
+
+.menu-burger {
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+    position: fixed;
+    right: 10px;
+    z-index: 50;
+    /* background-color: red; */
+}
+
+.menu-burger:hover {
+    background-color: #666c75;
+}
+
+.menu-burger span {
+    background-color: currentColor;
+    display: block;
+    height: 1px;
+    left: calc(50% - 18px);
+    position: absolute;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transition-duration: 86ms;
+    transition-duration: 86ms;
+    -webkit-transition-property: background-color, opacity, -webkit-transform;
+    transition-property: background-color, opacity, -webkit-transform;
+    transition-property: background-color, opacity, transform;
+    transition-property: background-color, opacity, transform, -webkit-transform;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    width: 36px;
+}
+
+.menu-burger span:nth-child(1) {
+    top: calc(50% - 10px);
+}
+
+.menu-burger span:nth-child(2) {
+    top: calc(50% + 0px);
+}
+
+.menu-burger span:nth-child(3) {
+    top: calc(50% + 10px);
+}
+
+/* GRID-Контейнер для всего содержимого страницы */
+.gridContainer {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+
+/* Отступ слева для элемента div Заголовка правой стороны, Отступ слева для элемента div Заголовка секции Sub с чекбоксом */
+header.header__general div,
+header.header__sub div {
+    margin: 0.8em 0.5em 0.8em 1.2em;
+}
+
+.section__main {
+    display: flex;
+    grid-area: 2 / 1 / 3 / 3;
+    justify-content: space-between;
+    /* margin: 0.25rem 0 0 0; */
+    margin: 0.5rem 0 0.3em 0;
+    width: 100%;
+    padding: 0 0.5rem;
+    /* section__main - зазор от краев экрана с помощью padding */
+}
+
+/*===========================================*/
+/*========    НАВИГАЦИОННАЯ ПАНЕЛЬ    =======*/
+/*===========================================*/
+
+.section__main .nav {
+    display: flex;
+    margin-top: -6px;
+}
+
+
+
+.nav li label,
+.nav li span {
+    min-width: 87px;
+    /* height: 130px; - такая сейчас высота блока с цифрой */
+    display: inline-block;
+}
+
+.nav span,
+.nav label {
+    cursor: pointer;
+}
+
+.nav li:hover span {
+    text-decoration: underline;
+    /* подчеркивание для верхнего обозначения */
+}
+
+.nav li:hover label {
+    background-color: #666c75;
+}
+
+/* @-moz-document url-prefix() {
+    .nav li label:hover { text-decoration: underline; box-shadow: none; } /* ТОЛЬКО для MOZILLA
+} */
+
+.nav li span,
+.nav li label {
+    text-align: center;
+}
+
+.nav li:last-child {
+    /* ВРЕМЕННАЯ МЕРА, УБРАТЬ! */
+    display: none;
+}
+
+.nav li:nth-child(7) label,
+.nav li:nth-child(9) label {
+    padding-right: 9px;
+    /* чтобы 2 цифры подряд уместились в блоке (только для лотка и ячейки) */
+    padding-left: 3px;
+}
+
+.nav li label {
+    margin-top: 3px;
+    /* отступ между span и label */
+}
+
+.nav li {
+    display: inline-flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    margin-right: 12px;
+}
+
+.nav li>span,
+.nav li.beforedot>span {
+    text-align: center;
+    font-size: 0.95em;
+    overflow: hidden;
+    text-overflow: clip;
+    /* обрезание неуместившихся символов при возможном переполнении */
+    white-space: nowrap;
+    /* Запрет переноса */
+}
+
+.nav li.beforedot {
+    margin-left: 2.4em;
+    /* сдвигаем весь блок li правее для того чтобы уместилась точка */
+}
+
+.nav li>label,
+.nav li.beforedot>label {
+    font-family: 'CoreSansDS25LightItalic';
+    font-size: 2.8em;
+    font-size: 6em;
+    line-height: 130px;
+    border: 1px solid #000;
+    /* display: block;
+    align-content: center;
+    padding-top: 7px;
+    height: 112px;
+    font-family: 'CoreSansDS25LightItalic';
+    font-size: 6em;
+    border: 1px solid #000; */
+}
+
+/* Точка между цифрами */
+.nav li.beforedot::before {
+    content: ".";
+    font-family: 'CoreSansDS25LightItalic';
+    height: 0em;
+    font-size: 6em;
+    line-height: 1.8em;
+    cursor: default;
+    margin-left: -0.36em;
+    /* переопределение - сдвигаем разделитель в виде точки между 511 . 1Ф левее */
+}
+
+/***********************************************************/
+/****************    DROPDOWN INPUT + UL    ****************/
+/***********************************************************/
+
+.dropbtn {
+    background-color: var(--color-crBrown);
+    color: white;
+    padding: 0 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    line-height: 17px;
+    /* vertical-align: top; */
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: var(--color-crBrown);
+}
+
+.dropdown-input {
+    margin: 0 !important;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown input:focus {
+    /* padding-right: 0; */
+    border: 1px solid var(--color-crBrown);
+}
+
+/* The search field */
+#myInput,
+#selCode_ {
+    box-sizing: border-box;
+    padding-right: 0;
+}
+
+.dropdown-content .show {
+    box-shadow: 0px 0px 3px #888888;
+    /* тень вокруг блока выпадающего списка */
+}
+
+.dropdown-content li i {
+    padding: 0 7px;
+    font-style: normal;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.wide-100 .dropdown {
+    margin: 0 0.5em;
+}
+
+.wide-100 .dropdown input {
+    margin: 0 !important;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    position: absolute;
+    background-color: #C3C7C8;
+    min-width: 100%;
+    z-index: 1;
+    margin: 1.3em 0 0 0em;
+    max-height: 70vh;
+    /* для скролла в списке */
+    overflow-y: auto;
+    /* для скролла в списке */
+}
+
+/* Links inside the dropdown */
+.dropdown-content li {
+    color: #000;
+    padding: 1px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content li:hover,
+.dropdown-content .selected {
+    color: #fff;
+    background-color: #3A72E0;
+    cursor: pointer;
+}
+
+.show {
+    display: block;
+}
+
+/* Hide the dropdown menu (use JS to remove this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.hidden {
+    display: none;
+}
+
+
+/********************************************************/
+
+/* MAIN: If убрать "display: flex;"=> оно станет "block" => отображение для мобильных - в один столбец */
+main {
+    display: grid;
+    flex-direction: row;
+    /* padding: 0 0.25rem 0.75rem 0.25rem; убрал paddings слева и справа */
+    padding: 0 0 0.75rem 0;
+}
+
+/* Растягивающийся input */
+.input-flex {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+/* Растягивающийся элемент */
+.wide-100 {
+    flex: 1 0 auto;
+}
+
+.input-flex label {
+    flex: 0 0 100px;
+    display: block;
+}
+
+.input-flex input {
+    flex: 1 0 auto;
+}
+
+.header-top,
+footer {
+    /* glob */
+    grid-column: 1 / -1;
+}
+
+/* Левая панель с канвасом */
+.item-1 {
+    display: grid;
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+
+
+/* Правая панель с размерами прямоугольников */
+.item-2 {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+
+.bold {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+
+.center,
+.center+input {
+    /* ДОДЕЛАТЬ! */
+    display: flex;
+    justify-content: center;
+}
+
+.left {
+    display: flex;
+    justify-content: start;
+}
+
+.left .label-heading {
+    /* align-self: center; */
+    font-size: 1rem;
+    align-self: start;
+    vertical-align: top;
+}
+
+
+
+.right-block__buttons {
+    display: flex;
+    grid-area: 4 / 1 / 5 / 3;
+    width: 100%;
+}
+
+.status-bar {
+    display: grid;
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+/* Левая панель с канвасом */
+.item-1 {
+    /* display: flex; */
+    /* display: grid; */
+    /* flex-direction: column; */
+}
+
+/**************/
+/*   КАНВАС   */
+/**************/
+.canvas-wrap {
+    /* margin: auto; (это было для центрирования по вертикали) */
+    background-color: var(--color-chateauGrey);
+    /* background-color: red; */
+    padding: 25px;
+    margin-right: 25px;
+    height: min-content;
+}
+
+.item-1 canvas {
+    /* width: 600px; */
+    /* height: 100%; */
+    /* object-fit: contain; */
+    /* border-width: 0px; */
+    /* border-style: dotted; */
+    /* border-color: var(--color-chiffon); */
+    /* margin: auto; */
+    background-color: var(--color-chateauGrey);
+    padding: 0;
+    margin: 0 1.3 0.5rem 0;
+}
+
+.item-1 {
+    padding: 0.25rem 0;
+}
+
+
+
+/* Верх правой панели с вводом высоты ширины и глубины */
+.section-general {
+    /* flex-direction: row;
+    font-size: .875rem; */
+    display: block;
+}
+
+/* TOP - Панель с заголовком */
+.gridContainer header.header-top,
+.gridContainer header.header-top div {
+    /* height: 2rem; только если нет текста, иначе маловато */
+    /* padding: 8px; */
+    height: 50px;
+    /* justify-content: space-between; */ /* распорка между элементами */
+    border-bottom: 1px dotted var(--color-chiffon);
+    /* display: grid; */
+    align-content: center;
+    /* по вертикали */
+}
+
+header.header-top .logo-left {
+    width: 160px;
+    background-image: url("..//img/logo-grey-362x50.png");
+    background-size: 160px 22px;
+    background-repeat: no-repeat;
+    background-position: left;
+    /* -webkit-filter: drop-shadow(0px 0px 1px #222);
+    filter: drop-shadow(0px 0px 1px #222); */
+}
+
+.user {
+    /* justify-content: flex-end; */
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.user span {
+    padding-left: 5px;
+}
+
+.user span .out {
+    background-color: #4DD8E6;
+    /* background-size: contain; */
+    height: 22px;
+    width: 22px;
+    display: block;
+    /* background-image: url('..//img/svg/exit-icon-22.svg'); */
+    mask-image: url('..//img/svg/exit-icon-22.svg');
+    -webkit-mask-image: url('..//img/svg/exit-icon-22.svg');
+}
+
+
+/* // TOP - Панель с заголовком */
+
+/* glob - Заголовок в TOP - Панели */
+header.header-top div {
+    display: inline-flex;
+    position: relative;
+    align-content: center;
+    color: #4DD8E6;
+    /* glob - ЦВЕТ текста в верхней панели */
+    padding: 10px 0;
+    align-items: center;
+}
+
+header.header-top .menu-name {
+    text-transform: uppercase;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 36px;
+    justify-content: center;
+}
+
+
+header.header-top div.menu-name {
+    text-transform: uppercase;
+    font-style: bold;
+    font-size: 34px;
+    /* padding: 10px; */
+    flex-grow: 1;
+}
+
+label {
+    font-family: 'CoreSansDS25Light';
+    font-size: 14px;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.label-heading,
+.gridContainer header.header-top {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 18px;
+    justify-content: space-between;
+    display: flex;
+    /* padding-bottom: 10px; Убрал для того чтобы checkbox выровнять */
+}
+
+
+.header__sub label.label-heading {
+    padding-left: 0.1em;
+    /* color:  red; */
+}
+
+/* Зеленые чекбоксы и радиокнопки  */
+
+input[type=checkbox].green {
+    position: relative;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    background-color:#474443;
+    text-align:  center;
+}
+input[type=checkbox].green:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    background-color:#474443;
+}
+input[type=checkbox].green:checked:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    background-color:#474443;
+}
+input[type=checkbox].green:checked:after {
+    content: "";
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: solid #79CA42;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    position: absolute;
+    top: 2px;
+    left: 6px;
+}
+
+/* // Зеленые чекбоксы и радиокнопки  */
+
+/*************************************************************/
+/**** Grüne CHECKBOXES und RADIOBUTTONS fur Meine Hecke******//*Grüne Kontrollkästchen und radioknöpfe für meinen Heck*/
+/*************************************************************/
+
+/* @supports(-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type='checkbox'].green,
+    input[type='radio'].green {
+      --active: #474443; 
+      --active-inner: #79CA42; 
+      --focus: 2px rgba(39, 94, 254, .3);
+      --border: #BBC1E1;
+      --border-hover: #275EFE;
+      --background: #474443; 
+      --disabled: #F6F8FF;
+      --disabled-inner: #E1E6F9;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 21px;
+      outline: none;
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+      margin: 0;
+      cursor: pointer;
+      border: 1px solid var(--bc, var(--border));
+      background: var(--b, var(--background));
+      transition: background .3s, border-color .3s, box-shadow .2s;
+      &:after { 
+        content: '';
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, .3s) var(--d-t-e, ease), opacity var(--d-o, .2s);
+      }
+      &:checked {
+        --b: var(--active);
+        --bc: var(--active);
+        --d-o: .3s;
+        --d-t: .6s;
+        --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+      }
+      &:disabled {
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: .9;
+        &:checked {
+          --b: var(--disabled-inner);
+          --bc: var(--border);
+        }
+        & + label {
+          cursor: not-allowed;
+        }
+      }
+      &:hover {
+        &:not(:checked) {
+          &:not(:disabled) {
+            --bc: var(--border-hover);
+          }
+        }
+      }
+      &:focus {
+        box-shadow: 0 0 0 var(--focus);
+      }
+      &:not(.switch) {
+        width: 21px;
+        &:after {
+          opacity: var(--o, 0);
+        }
+        &:checked {
+          --o: 1;
+        }
+      }
+      & + label {
+        font-size: 14px;
+        line-height: 21px;
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin-left: 4px;
+      }
+    }
+    input[type='checkbox'].green {
+      &:not(.switch) {
+        border-radius: 0;
+        &:after {
+          width: 5px;
+          height: 9px;
+          border: 2px solid var(--active-inner);
+          border-top: 0;
+          border-left: 0;
+          left: 7px;
+          top: 4px;
+          transform: rotate(var(--r, 20deg));
+        }
+        &:checked {
+          --r: 43deg;
+        }
+      }
+      &.switch {
+        width: 38px;
+        border-radius: 11px;
+        &:after {
+          left: 2px;
+          top: 2px;
+          border-radius: 50%;
+          width: 15px;
+          height: 15px;
+          background: var(--ab, var(--border));
+          transform: translateX(var(--x, 0));
+        }
+        &:checked {
+          --ab: var(--active-inner);
+          --x: 17px;
+        }
+        &:disabled {
+          &:not(:checked) {
+            &:after {
+              opacity: .6;
+            }
+          }
+        }
+      }
+    }
+    input[type='radio'].green {
+      border-radius: 50%;
+      &:after {
+        width: 19px;
+        height: 19px;
+        border-radius: 50%;
+        background: var(--active-inner);
+        opacity: 0;
+        transform: scale(var(--s, .7));
+      }
+      &:checked {
+        --s: .5;
+      }
+    }
+  }
+   */
+  /**********************************************************************/
+
+option {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+button {
+    font-family: 'CoreSansDS25Light';
+    text-align: center;
+    color: var(--color-black);
+    background-color: transparent;
+    border: 1px solid var(--color-black);
+    font-size: inherit;
+    /* иначе текст вылезает из кнопки */
+    padding: 0 0.9em;
+    margin: 0 0.4rem;
+    max-height: 1.7em;
+}
+
+button.x-but, .plus-button {
+    border: none;
+    height: 100%;
+    line-height: 10px;
+    padding: 0px;
+    margin: 0px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+button.x-but {font-size: 14px;}
+.plus-button {font-size: 10px;}
+
+#selCode,
+#inpCodeEdit {
+    width: 6em;
+}
+
+#btnEdit {
+    width: 9rem;
+}
+
+.inputLabel {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: end;
+    padding-right: 0.2rem;
+    padding-left: 0.1rem;
+    font-size: 0.85rem;
+}
+
+.inputBlock-top>label,
+.inputBlock-top>input,
+.inputBlock-top>select,
+.inputBlock-top>button {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock-base>label {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock {
+    display: flex;
+    align-items: center;
+    /* vertical-align: middle; */
+    white-space: nowrap;
+}
+
+.multyLine {
+    line-height: 0.75rem;
+}
+
+
+
+section.section__main div {
+    /* padding: 0 0.75rem; */
+}
+
+section.section__main div:nth-child(2) {
+    /* margin: 0 0 0 1.5rem; */
+}
+
+/* Ширина первого Select в Top-панели выбора Типа */
+.select-type {
+    width: 6em;
+}
+
+.section__main select,
+.section__main input {
+    /*конструкция ", .section__main input" на height не срабатывает - действует только на input */
+    /* height: 1.25rem; Этот элемент влияет на вертикальное позиционирование текста внутри input и select в шапке, причем в противоположных направлениях */
+    font-size: 1rem;
+    /* вместо 0.95rem - потому что 0.95 срабатывало только на select */
+    white-space: nowrap;
+    margin: 0 0.5em;
+}
+
+.section__main button,
+.section__main div:last-child {
+    /* padding-right: 0; */
+    /* margin: 0; */
+}
+
+.section__main div {
+    /* Все div внутри section__main - flex */
+    display: flex;
+}
+
+.section__main div label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    /* vertical-align: middle; */
+    text-align: end;
+    padding: 0.1rem;
+}
+
+.section-general__grid,
+.section-sub__grid {
+    display: grid;
+}
+
+.section-sub__grid--5x2>div,
+.section-general__grid--3x2>div {
+    display: flex;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* класс для увеличенной разрядки букв для текста ВСЕГО */
+.summ {
+    letter-spacing: .03rem;
+    font-size: 15px;
+}
+
+/* Кнопки внизу страницы - по правой стороне */
+.right-block__buttons {
+    justify-content: flex-end;
+    /* justify-content: space-between; */
+    padding: 0 0.6rem;
+    /* margin: 0 0.4rem; */
+    /* margin-top: 0.25em; */
+}
+
+.right-block__buttons button.button-right:first-child {
+    margin: 0;
+}
+
+.right-block__buttons button.button-right {
+    margin: 0 0 0 0.75em;
+    word-break: break-all;
+}
+
+.section__subsumm {
+    display: grid;
+    margin-top: 1rem;
+    justify-content: end;
+}
+
+.section__subsumm label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    white-space: nowrap;
+
+}
+
+/* Статус-бар */
+.status-bar .status-label {
+    vertical-align: middle;
+    text-align: start;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-chiffon);
+}
+
+.status-bar .status-label-changed {
+    vertical-align: middle;
+    text-align: start;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-alert);
+}

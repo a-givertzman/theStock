@@ -1,0 +1,623 @@
+@import '../../css/myFontsWebfontsKit.css';
+@import '../../css/atomic.css';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --color-chiffon: #F3FDBD;
+    --color-raven: #6B727B;
+    --color-crBrown: #474443;
+    --color-chateauGrey: #97A1AA;
+    --color-black: #000000;
+    --color-white: #ffffff;
+    --color-tr: transparent;
+/* Цвета модальных окн */
+    --color-info: #90cdf4;
+    --color-alert: #fc8181;
+    /* --color-alert: #fefcbf; */
+}
+
+body {
+    font-family: 'CoreSansDS25Light';
+    background-color: var(--color-raven);
+    /* background-color: var(--color-crBrown); */
+}
+
+/* GRID-Контейнер для всего содержимого страницы */
+.gridContainer {
+    display: grid;
+    /* background-color: var(--color-raven); */
+    margin: 0 1.5rem;
+    width: max-content;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(5, min-content);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.header-top {
+    grid-area: 1 / 1 / 2 / 3;
+}
+
+/* Отступ слева для элемента div Заголовка правой стороны, Отступ слева для элемента div Заголовка секции Sub с чекбоксом */
+header.header__general div, header.header__sub div {
+    margin: 0 0.5em 1.2em 1.2em;
+}
+
+.section__main {
+    display: flex;
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.item-1 {
+    display: grid;
+    grid-area: 3 / 1 / 4 / 2;
+}
+
+.item-2 {
+    display: grid;
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.bottom-block__buttons {
+    display: flex;
+    grid-area: 4 / 1 / 5 / 3;
+    width: 100%;
+}
+
+.status-bar {
+    display: grid;
+    grid-area: 5 / 1 / 6 / 3;
+}
+
+/* MAIN: If убрать "display: flex;"=> оно станет "block" => отображение для мобильных - в один столбец */
+main {
+    display: flex;
+    flex-direction: row;
+    padding: 0.75rem 0.25rem 0.25rem;
+}
+
+/* section__main - зазор от краев экрана с помощью padding */
+section.section__main {
+    margin: 0.25rem 0 0 0;
+    width: 100%;
+    padding: 0 0.5rem;
+}
+
+
+/* Растягивающийся input */
+.input-flex {
+    display: flex;
+    flex: 1 0 auto;
+}
+
+.input-flex label {
+    flex: 0 0 100px;
+    display: block;
+}
+
+.input-flex input {
+    flex: 1 0 auto;
+}
+
+/* Левая панель с канвасом */
+.item-1 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    /* margin: 1.25rem 0.75rem 1.25rem 0; */
+    margin: 0.5rem 0.85rem 0.5rem 0;
+    padding: 1.5rem;
+    /* border-width: 1px; */
+    /* border-style: dotted; */
+    background-color: var(--color-chateauGrey);
+    /* border-color: var(--color-chiffon); */
+    ;
+}
+
+.item-1 canvas {
+    width: 500px;
+    height: 500px;
+    object-fit: contain;
+    border-width: 0.1px;
+    border-style: dotted;
+    border-color: var(--color-chiffon);
+}
+
+/* Правая панель с размерами */
+.item-2 {
+    padding: 0.25rem;
+    flex-direction: column;
+    display: flex;
+    min-width: 459px;
+}
+
+/* Верх правой панели с вводом высоты ширины и глцбины */
+.section-general {
+    flex-direction: row;
+    font-size: .875rem;
+    display: flex;
+}
+
+/* TOP - Панель с заголовком */
+.gridContainer header.header-top {
+    height: 2rem;
+    padding: 0 0.5rem;
+    justify-content: center;
+    border-bottom: 1px dotted var(--color-chiffon);
+    ;
+    display: flex;
+}
+
+/* Заголовок в TOP - Панели */
+header.header-top div {
+    align-content: center;
+    display: grid;
+}
+
+label {
+    font-family: 'CoreSansDS25Light';
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.label-heading,
+.gridContainer header.header-top {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 1.125rem;
+    display: flex;
+}
+/* ==================== */
+/* == МОДАЛЬНОЕ ОКНО == */
+/* ==================== */
+
+.dialog-modal{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* GRID-Контейнер для всего содержимого модального окна */
+.gridContainer__modal {
+    display: grid;
+    background-color: var(--color-raven);
+    grid-template-columns: minmax(16em, 25em);
+    grid-template-rows: unset;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    /* border: 1px dotted var(--color-chiffon); */
+    box-shadow: 0px 5px 20px rgba(0,0,0,.5);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 1.25rem 1.25rem 1.25rem;
+}
+
+.gridContainer__modal main {
+    display: grid;
+    padding: 0.75rem 0 0 0;
+    grid-row-gap: 0.75em;
+}
+
+/* Распределение текста по всей ширине окна */
+.gridContainer__modal main p {
+    text-align: justify;
+}
+
+/* Настройка цвета для фона информационного диалогового окна */
+.modal-info {
+    background-color: var(--color-info);
+}
+
+/* Настройка цвета для фона ALERT диалогового окна */
+.modal-alert {
+    background-color: var(--color-alert);
+}
+
+/* Заголовок модального окна */
+.header-top__modal {
+    height: 2rem;
+    /* padding: 0 0.5rem; */
+    justify-content: center;
+    border-bottom: 1px dotted var(--color-chiffon);
+    display: flex;
+}
+
+header.header__modal div {
+    /* margin: 0 0.5em; */
+}
+
+.gridContainer__modal header {
+    display: flex;
+}
+
+/* Заголовок в TOP - Панели */
+header.header-top__modal div {
+    align-content: center;
+    display: grid;
+    font-family: 'CoreSansDS35Regular';
+    font-size: 1.34rem;
+}
+
+.section-modal {
+    display: grid;
+}
+
+.bottom-block__buttons--modal {
+    display: flex;
+    /* padding-top: 0.2rem; */
+}
+
+.bottom-block__buttons--modal {
+    justify-content: flex-end;  
+}
+
+.bottom-block__buttons--modal button.button-right {
+    margin: 0 0 0 1.5rem;
+}
+
+.header__sub label.label-heading {
+    padding-left: 0.1em;
+}
+
+input {
+    align-content: center;
+    border-style: none;
+    font-size: 0.8rem;
+}
+
+select {
+    vertical-align: middle;
+    border-style: none;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+input,
+select,
+option {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: 'CoreSansDS25Light';
+    font-size: 0.8rem;
+    white-space: nowrap;
+    color: var(--color-white);
+    background-color: var(--color-crBrown);
+    box-sizing: border-box;
+    padding: 0 0.5rem 0 0.25rem;
+    text-align: start;
+    margin: 0 0.2rem;
+}
+
+option {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+button {
+    font-family: 'CoreSansDS25Light';
+    text-align: center;
+    color: var(--color-black);
+    background-color: transparent;
+    border: 1px solid var(--color-black);
+    font-size: inherit;
+    padding: 0 0.75rem;
+    margin: 0 0.75rem;
+}
+
+
+#selCode,
+#inpCodeEdit {
+    width: 6em;
+}
+
+#btnEdit {
+    width: 9rem;
+}
+
+.inputLabel {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: end;
+    padding-right: 0.2rem;
+    padding-left: 0.1rem;
+    font-size: 0.85rem;
+}
+
+.inputBlock-top>label,
+.inputBlock-top>input,
+.inputBlock-top>select,
+.inputBlock-top>button {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock-base>label {
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.inputBlock {
+    display: flex;
+    align-items: center;
+    /* vertical-align: middle; */
+    white-space: nowrap;
+}
+
+.multyLine {
+    line-height: 0.75rem;
+}
+
+
+
+section.section__main div {
+    /* padding: 0 0.75rem; */
+}
+
+section.section__main div:nth-child(2) {
+    margin: 0 1.5rem;
+}
+
+/* Ширина первого Select в Top-панели выбора Типа */
+/* section.section__main>div>select {
+    width: 6em;
+} */
+/* Ширина первого Select в Top-панели выбора Типа */
+.select-type {
+    width: 6em;
+}
+
+.section__main select,
+.section__main input {
+    height: 1.25rem;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.section__main button,
+.section__main div:last-child {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+.section__main button {
+    padding: 0;
+    margin-left: 0.75rem;
+}
+
+.section__main div label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    vertical-align: middle;
+    text-align: end;
+    padding: 0 0.1rem;
+}
+
+.section-general__grid,
+.section-sub__grid {
+    display: grid;
+}
+
+.section-sub__grid--5x2>div,
+.section-general__grid--3x2>div {
+    display: flex;
+    align-items: center;
+}
+
+/* ================================================================== */
+/* Настройка grid 3x2 для правой секции general Ширина-Высота-Глубина */
+/* ================================================================== */
+
+.section-general__grid {
+    display: grid;
+}
+
+.section-general__grid--3x2>div {
+    margin: 0 0.5rem;
+}
+
+.section-general__grid--3x2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0.3rem;
+    grid-row-gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.section-general__grid--3x2 .frst {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.section-general__grid--3x2 .scnd {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.section-general__grid--3x2 .thrd {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.section-general__grid--3x2 .frth {
+    grid-area: 2 / 1 / 3 / 2;
+}
+
+.section-general__grid--3x2 .ffth {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+.section-general__grid--3x2 .sxth {
+    grid-area: 2 / 3 / 3 / 4;
+}
+
+.section-general__grid--3x2 label { /* Убираем чтобы все было едино */
+    /* padding-right: 0.2rem;
+    padding-left: 0.1rem; */
+}
+
+/* Order пока не работает из-за grid-area */
+/* .sxth { order:1; }
+.ffth { order:2; } */
+
+.section-general__grid--3x2 input {
+    height: 1.1rem;
+}
+
+.section-general__grid--3x2 .frth {
+    justify-self: center;
+    padding-right: 0.7em;
+}
+/* ================================================================= */
+/* Настройка grid 5x2 для правой секции sub Ширина-Высота-количество */
+/* ================================================================= */
+.section-sub {
+    margin-bottom: 1.3rem;
+}
+
+.section-sub__grid--5x2 {
+    display: grid;
+    /* background-color: green; */
+    grid-template-columns: min-content 1.2fr 1.6fr 0.9fr 0.8fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0.1rem;
+    /* margin-top: 0.5rem;
+    margin-bottom: 0.75rem; */
+}
+.section-sub__grid--5x2 div {
+    /* background-color: DodgerBlue; */
+}
+
+/* Нулевой padding для всех labels в секции  */
+.section-sub__grid--5x2 label {
+    /* padding: 0 0.2rem; */
+    /* padding-right: 0.2rem;
+    padding-left: 0.2rem; */
+}
+/* Added пробел после цифры в таблице */
+.nmbr label {
+    padding-right: 0.5rem;
+}
+/* Added пробел для ячейки Всего */
+.sxth label.summ {
+    padding: 0 0.1rem;
+}
+/* Нулевой блок Грида 5x2 - цифра */
+.section-sub__grid--5x2__nmbr {
+    grid-area: 1 / 1 / 2 / 2;
+    justify-self: left;
+}
+
+/* Первый блок - Ширина */
+.section-sub__grid--5x2 .frst {
+    grid-area: 1 / 2 / 2 / 3;
+    justify-self: left;
+    /* padding-left: 0.2rem; */
+}
+
+/* Второй блок - Высота */
+.section-sub__grid--5x2 .scnd {
+    grid-area: 1 / 3 / 2 / 4;
+    justify-self: center;
+}
+
+/* Третий блок - Select */
+.section-sub__grid--5x2 .thrd {
+    grid-area: 1 / 4 / 2 / 5;
+    justify-self: right;
+}
+
+.section-sub__grid--5x2 select {
+    width: 6em;
+}
+
+/* Четвертый блок - Количество по вертикали */
+.section-sub__grid--5x2 .frth {
+    grid-area: 2 / 2 / 3 / 3;
+}
+
+/* Пятый блок - Количество по горизонтали - занимает 2 ячейки */
+.section-sub__grid--5x2 .ffth {
+    grid-area: 2 / 3 / 3 / 5;
+    /* justify-self: center; Убираем потому что большой пробел слева - некрасиво*/
+    justify-self: left;
+    padding-left: 1rem;
+}
+
+/* Шестой блок - Всего */
+.section-sub__grid--5x2 .sxth {
+    grid-area: 2 / 5 / 3 / 6;
+}
+
+/* Двухстрочные Labels по центру блока, ориентация текста по правой стороне*/
+.section-sub__grid--5x2 .frth,
+.section-sub__grid--5x2 .ffth {
+    align-items: center;
+    line-height: 0.75rem;
+    text-align: end;
+}
+
+/* Выравнивание блоков по центру между соседними */
+.section-sub__grid--5x2 .scnd,
+.section-sub__grid--5x2 .ffth {
+    /* padding-right: 11px; */
+}
+
+/* Ориентация по правой стороне (вторая и последняя ячейка во сторой строке) */
+.section-sub__grid--5x2 .frth,
+.section-sub__grid--5x2 .sxth {
+    justify-self: end;
+}
+
+.section-sub__grid--5x2 .sxth label {
+
+}
+
+/* класс для увеличенной разрядки букв для текста ВСЕГО */
+.summ {
+    letter-spacing: .03rem;
+    font-size: 0.95rem;
+}
+
+/* Кнопки внизу страницы - по правой стороне */
+.bottom-block__buttons {
+    justify-content: flex-end;
+    padding: 0 0.5rem;
+}
+
+.bottom-block__buttons button.button-right {
+    margin: 0 0 0 1.5rem;
+}
+
+.section__subsumm {
+    display: grid;
+    margin-top: 1rem;
+    justify-content: end;
+}
+
+.section__subsumm label {
+    font-family: 'CoreSansDS35Regular';
+    font-size: 0.95rem;
+    white-space: nowrap;
+
+}
+/* Статус-бар */
+.status-bar .status-label {
+    vertical-align: middle;
+    text-align: start;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: var(--color-chiffon);
+}
