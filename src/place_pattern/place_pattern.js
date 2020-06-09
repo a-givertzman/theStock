@@ -1,4 +1,6 @@
 "use strict";
+import {Graphic} from '../libJS/graphic'
+import {position} from '../place_pattern/settings'
 
 
 
@@ -249,8 +251,8 @@ export class PlacePattern {
         this._canvas = canvas;       // объект canvas на котором элемент будет отображен
         this._ctx = this._canvas.getContext('2d');
 
-        this._selectedColor = shadeColor(this._color, -20);
-        this._mouseOverColor = "#ff0000" //shadeColor(this._color, -90);
+        this._selectedColor = Graphic.shadeColor(this._color, -20);
+        this._mouseOverColor = "#ff0000" //Graphic.shadeColor(this._color, -90);
 
         this._border = 0;           // толщина рамки в % от меньшего габарита viewBox
         this._mouseOverBorder = 20; // толщина рамки в % от меньшего габарита viewBox когда указатель мыши над элементом

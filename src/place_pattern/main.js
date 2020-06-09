@@ -1,6 +1,5 @@
 "use strict";
 import * as generic from '../libJS/generic'
-import * as graphic from '../libJS/graphic'
 import {btn, messageBox} from '../dialog/dialog'
 import {HtmlDom} from '../libJS/html_utils'
 import {copyData, requestToServer, loadData, saveData, DataHendler} from '../libJS/data_handler'

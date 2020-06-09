@@ -1,7 +1,7 @@
 "use strict";
-import {$, jQuery} from '../jquery/jquery.min' //jquery-3.4.1.min.js
-// const $ = $;
-
+// import {$, jQuery} from '../jquery/jquery.min' //jquery-3.4.1.min.js
+import jQuery from "../jquery/jquery_min";
+window.$ = window.jQuery = jQuery;
 
 
 
