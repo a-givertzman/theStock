@@ -1,0 +1,18 @@
+{
+  "name": "thestockv2",
+  "version": "1.0.0",
+  "description": "theStockv2 (REDUX)",
+  "main": "./src/place_patternt/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "theStock",
+    "Redux"
+  ],
+  "author": "a.givertzman <a.givertzman@icloud.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0"
+  }
+}
