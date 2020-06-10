@@ -1,5 +1,6 @@
 "use strict";
-import * as generic from '../libJS/generic'
+// import * as generic from '../libJS/generic'
+import 
 import {btn, messageBox} from '../dialog/dialog'
 import {HtmlDom} from '../libJS/html_utils'
 import {copyData, requestToServer, loadData, saveData, DataHendler} from '../libJS/data_handler'
@@ -7,6 +8,12 @@ import {position, normalView} from '../place_pattern/settings'
 import {SearchList} from '../searchList/searchList'
 import {PlacePattern, dataSet, dataModel, saveDataModel} from '../place_pattern/place_pattern'
 import {SubBlockContainer} from '../place_pattern/subblock'
+import {createStore, applyMiddleware} from 'redux'
+import {thunk} from 'redux-thunk'
+import {rootReducer} from '../redux/rootReducer'
+import {initialState} from '../redux/initialState'
+import {codeChanged} from '../redux/actions'
+
 
 
 
@@ -28,7 +35,15 @@ import {SubBlockContainer} from '../place_pattern/subblock'
 const listFormat = ['code', '|', 'name', '|', 'wx', 'х', 'wy', 'х', 'wz', '|', 'iwx', 'х', 'iwy', 'х', 'iwz', '|', '(Внут item_count шт)']
 
 // формат вывода выбранного элемента выпадающего списка
-const selectedFormat = ['code', ' | ', 'name'];
+const selectedFormat = ['code', ' | ', 'name']
+
+
+// redux/store всего приожения
+const store = createStore(
+    rootReducer, 
+    initialState, 
+    applyMiddleware(thunk)
+)
 
 
 // -------------------------------------------------------
@@ -78,7 +93,7 @@ window.addEventListener("load", () => {
 
     const selectPanel = htmlDom.element("#selectPanel");
     const editPanel = htmlDom.element("#editPanel");
-    const inpCodeEdit = htmlDom.element("#inpCode");
+    const inpCode = htmlDom.element("#inpCode");
     const inpName = htmlDom.element("#inpName");
     const inpPayload = htmlDom.element("#inpPayload");
     const inpSizeWx = htmlDom.element("#inpSizeWx");
@@ -190,7 +205,7 @@ window.addEventListener("load", () => {
 
     // добавляем связи в dataHendler
     dataHendler.setDataBind(patternPackList, 'archetype_id', 'list', 'cange');
-    dataHendler.setDataBind('#inpCode', 'code', 'text', 'input');
+    // dataHendler.setDataBind('#inpCode', 'code', 'text', 'input');
     dataHendler.setDataBind('#inpName', 'name', 'text', 'input');
     dataHendler.setDataBind('#inpPayload', 'payload', 'int', 'input');
     dataHendler.setDataBind('#inpSizeWx', 'wx', 'int', 'input');
@@ -205,6 +220,13 @@ window.addEventListener("load", () => {
     dataHendler.setDataBind('#lblStatusChanged', 'changed', 'text', '');
     dataHendler.setDataBind('#lblStatusInfo', 'exceeded', 'text', '');
 
+    inpCode.addEventListener('input', () => {
+        store.dispatch(codeChanged())
+    })
+
+    store.subscribe()
+
+    store.dispatch({type: INIT_APPLICATION})
 
     // создаем placePattern
     // Это обработчик выбранного элемента
@@ -224,7 +246,7 @@ window.addEventListener("load", () => {
 
         setEditMode(true);                                                          // включаем режим редактирования
 
-        inpCodeEdit.focus();
+        inpCode.focus();
 
         console.groupEnd();
     }
@@ -246,7 +268,7 @@ window.addEventListener("load", () => {
         
         setEditMode(true);                                                          // включаем режим редактирования
 
-        inpCodeEdit.focus();
+        inpCode.focus();
 
         console.groupEnd();
     }
